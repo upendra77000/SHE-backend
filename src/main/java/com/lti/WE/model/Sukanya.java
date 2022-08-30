@@ -1,20 +1,23 @@
 package com.lti.WE.model;
 
+import java.time.LocalDate;
 import java.util.Date;
+
+import com.lti.WE.entity.SukanyaAccount;
 
 public class Sukanya {
     //private long id;
-    private String firstName;
-    private String lastName;
-	private Date dob;
-	private String aadharNo;
+    String firstName;
+    String lastName;
+	LocalDate dob;
+	String aadharNo;
 	
 	
 	public Sukanya() {
 
 	}
 
-	public Sukanya(long id, String firstName, String lastName, Date dob, String aadharNo) {
+	public Sukanya(long id, String firstName, String lastName, LocalDate dob, String aadharNo) {
 		super();
 		//this.id = id;
 		this.firstName = firstName;
@@ -47,11 +50,11 @@ public class Sukanya {
 		this.lastName = lastName;
 	}
 
-	public Date getDob() {
+	public LocalDate getDob() {
 		return dob;
 	}
 
-	public void setDob(Date dob) {
+	public void setDob(LocalDate dob) {
 		this.dob = dob;
 	}
 
@@ -69,5 +72,13 @@ public class Sukanya {
 				+ ", aadharNo=" + aadharNo + "]";
 	}
 	
+	public SukanyaAccount toSukanyaAccount() {
+		SukanyaAccount sukanyaAccount =new SukanyaAccount();
+		sukanyaAccount.setAadharNo(aadharNo);
+		sukanyaAccount.setBeneficiary_name(firstName+" "+lastName);
+		sukanyaAccount.setDob(dob);
+		sukanyaAccount.setSk_registration_date(new java.sql.Date(new Date().getTime()).toLocalDate());
+		return sukanyaAccount;
+	}
 	
 }

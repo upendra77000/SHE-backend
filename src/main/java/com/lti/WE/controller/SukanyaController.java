@@ -9,8 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import com.lti.WE.model.Sukanya;
-import com.lti.WE.model.SukanyaDocs;
-import com.lti.WE.services.SukanyaService;
+import com.lti.WE.model.SukanyaDocs; 
+import com.lti.WE.services.SukanyaServiceImp;
+import com.lti.WE.entity.SukanyaAccount;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -18,11 +19,11 @@ import com.lti.WE.services.SukanyaService;
 public class SukanyaController {
 	
 	@Autowired
-	private SukanyaService sukanyaService;
+	SukanyaServiceImp sukanyaService;
 	
 	@PostMapping("/register")
-	public Sukanya register(@RequestBody Sukanya sukanya) {
-		return sukanyaService.register(sukanya);
+	public SukanyaAccount register(@RequestBody Sukanya sukanya) {
+		return sukanyaService.register(sukanya.toSukanyaAccount());
 	}
 	
 	@PostMapping("/upload_doc")

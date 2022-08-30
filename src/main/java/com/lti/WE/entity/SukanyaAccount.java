@@ -1,6 +1,6 @@
 package com.lti.WE.entity;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,6 +11,9 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.apache.naming.factory.BeanFactory;
+import org.springframework.context.ApplicationContext;
+
 @Entity
 @Table(name = "WE_SukanyaScheme_Account")
 public class SukanyaAccount {
@@ -20,69 +23,76 @@ public class SukanyaAccount {
 	@GeneratedValue(generator = "sukanyaAcc_seq", strategy = GenerationType.SEQUENCE)
 	private long account_no;
 	
-	private String beneficiary_name; 
-	private Date sk_dob;  
-	private String sk_aadharNo;
-	private Date sk_registration_date;
-	private boolean verified;
+	String beneficiary_name; 
+	
+	@Column(name = "sk_dob")
+	LocalDate dob;
+
+	@Column(name = "sk_aadharNo")
+	String aadharNo;
+	
+	LocalDate sk_registration_date;
+	boolean verified;
 	
 	@OneToOne(mappedBy = "sukanyaAccount")
 	SukanyaDocuments sukanyaDocuments;
-	
+
 	public long getAccount_no() {
 		return account_no;
 	}
-	
+
 	public void setAccount_no(long account_no) {
 		this.account_no = account_no;
 	}
-	
+
 	public String getBeneficiary_name() {
 		return beneficiary_name;
 	}
-	
+
 	public void setBeneficiary_name(String beneficiary_name) {
 		this.beneficiary_name = beneficiary_name;
 	}
-	
-	public Date getSk_dob() {
-		return sk_dob;
+
+	public LocalDate getDob() {
+		return dob;
 	}
-	
-	public void setSk_dob(Date sk_dob) {
-		this.sk_dob = sk_dob;
+
+	public void setDob(LocalDate dob) {
+		this.dob = dob;
 	}
-	
-	public String getSk_aadharNo() {
-		return sk_aadharNo;
+
+	public String getAadharNo() {
+		return aadharNo;
 	}
-	
-	public void setSk_aadharNo(String sk_aadharNo) {
-		this.sk_aadharNo = sk_aadharNo;
+
+	public void setAadharNo(String aadharNo) {
+		this.aadharNo = aadharNo;
 	}
-	
-	public Date getSk_registration_date() {
+
+	public LocalDate getSk_registration_date() {
 		return sk_registration_date;
 	}
-	
-	public void setSk_registration_date(Date sk_registration_date) {
+
+	public void setSk_registration_date(LocalDate sk_registration_date) {
 		this.sk_registration_date = sk_registration_date;
 	}
-	
+
 	public boolean isVerified() {
 		return verified;
 	}
-	
+
 	public void setVerified(boolean verified) {
 		this.verified = verified;
 	}
 
-	@Override
-	public String toString() {
-		return "SukanyaAccount [account_no=" + account_no + ", beneficiary_name=" + beneficiary_name + ", sk_dob="
-				+ sk_dob + ", sk_aadharNo=" + sk_aadharNo + ", sk_registration_date=" + sk_registration_date
-				+ ", verified=" + verified + ", sukanyaDocuments=" + sukanyaDocuments + "]";
-	}
+//	public SukanyaDocuments getSukanyaDocuments() {
+//		return sukanyaDocuments;
+//	}
+//
+//	public void setSukanyaDocuments(SukanyaDocuments sukanyaDocuments) {
+//		this.sukanyaDocuments = sukanyaDocuments;
+//	}
+	
 	
 	
 }
